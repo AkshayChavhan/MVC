@@ -133,6 +133,9 @@ Creating a well-organized folder structure is crucial for maintaining a clear an
 ├── package.json
 └── ...
 
+mongodb+srv://akshaychavhan676:akshaychavhan676@mvc.t3kxt7i.mongodb.net/
+
+
 INSTALLATION -->
 
 here's an outline of the installations you'll need for both the server (Node.js) and the client (React) sides of your project.
