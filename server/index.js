@@ -25,7 +25,7 @@ mongoose.connect('mongodb+srv://akshaychavhan676:akshaychavhan676@mvc.t3kxt7i.mo
 
 
 // API routes
-app.use('/api/login', userRoutes);
+app.use('/api/users/', userRoutes);
 
 
 // Start the server
