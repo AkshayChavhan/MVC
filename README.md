@@ -187,9 +187,44 @@ npm install react-router-dom
 Remember that you need to navigate to the respective server and client directories in your terminal before executing the installation commands.
 
 
+===============================================================================================================================
+
+####  Setting up Tailwind CSS (for current project)
+
+npm i tailwindcss
+
+add below in index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+### Create your configuration file
+Next, generate your tailwind.config.js file:
+
+npx tailwindcss-cli@latest init
+
+This will create a minimal tailwind.config.js file at the root of your project:
+Next, create a craco.config.js at the root of our project and add the tailwindcss and autoprefixer as PostCSS plugins:
 
 
 
+### Configure Tailwind to remove unused styles in production
+In your tailwind.config.js file, configure the purge option with the paths to all of your components so Tailwind can tree-shake unused styles in production builds:
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+============================================================================================================================
 
 
 ####  Setting up Tailwind CSS
