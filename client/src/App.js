@@ -1,6 +1,6 @@
 import SignUp from './components/Auth/login/Signup';
 import Login from './components/Auth/login/Login';
-import Dashboard from './components/Auth/login/Dashboard';
+import Dashboard from './components/pages/Dashboard';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
