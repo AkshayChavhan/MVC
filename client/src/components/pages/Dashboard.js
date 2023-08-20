@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import WorkInprogressPage from './WorkInprogressPage'
+import Template from './template'
 // import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const user = {
@@ -13,6 +14,7 @@ const navigation = [
   { name: 'Dashboard', href: '#', current: true },
   { name: 'Finance', href: '#', current: false },
   { name: 'Inventory', href: '#', current: false },
+  { name: 'Contact Us', href: '#', current: false },
   { name: 'About', href: '#', current: false },
 ]
 const userNavigation = [
@@ -27,6 +29,7 @@ function classNames(...classes) {
 
 export default function Dashboard() {
   const [opens, setOpens] = useState(false);
+  const [title, setTitle] = useState("Dashboard");
   return (
     <>
       {/*
@@ -57,7 +60,7 @@ export default function Dashboard() {
                           <a
                             key={item.name}
                             href={item.href}
-                            // onClick={setOpens(true)}
+                            onClick={()=> setTitle(item.name)}
                             className={classNames(
                               item.current
                                 ? 'bg-gray-900 text-white'
@@ -192,9 +195,7 @@ export default function Dashboard() {
         </Disclosure>
 
         <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
-          </div>
+          <Template title={title} />
         </header>
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
