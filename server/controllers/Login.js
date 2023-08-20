@@ -6,7 +6,7 @@ exports.login = async (req, res) => {
   const { username, password, secretKey, token } = req.body;
 
   if (!token || !secretKey) {
-    return res.json({ valid: false });
+    return  res.status(500).json({ valid: false , message: "Login not success" });
   }
   try {
 
