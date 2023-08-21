@@ -32,18 +32,16 @@ const Signup = () => {
     const result = await signupUser(formData);
     console.log("result in Signup => ", result);
     if (result.statusText !== "Created") return;
-    const token = result.data.token;
-    const secretKey = result.data.secretKey;
-    if (token && secretKey) {
-      localStorage.setItem(formData.username, token);
-      localStorage.setItem(`${formData.username}_secretKey`, secretKey);
-      navigate('/dashboard');
-      // navigate('/dashboard' ,  { state: { userData: response.data.userData } });
-    }
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i); // Get the key of the current item
-      console.log(`Key: ${key}`);
-    }
+    // const token = result.data.token;
+    // const secretKey = result.data.secretKey;
+    // localStorage.setItem(formData.username, token);
+    // localStorage.setItem(`${formData.username}_secretKey`, secretKey);
+    // navigate('/dashboard');
+    // navigate('/dashboard' ,  { state: { userData: response.data.userData } });
+    // for (let i = 0; i < localStorage.length; i++) {
+    //   const key = localStorage.key(i); // Get the key of the current item
+    //   console.log(`Key: ${key}`);
+    // }
   };
 
   return (
@@ -69,9 +67,9 @@ const Signup = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={handleSubmit} className="space-y-6" 
-          // action="#"
-          method="POST">
+          <form onSubmit={handleSubmit} className="space-y-6"
+            // action="#"
+            method="POST">
             <div>
               <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                 Username

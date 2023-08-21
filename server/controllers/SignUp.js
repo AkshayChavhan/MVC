@@ -1,12 +1,9 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const crypto = require("crypto");
 
 exports.signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const secretKey = crypto.randomBytes(64).toString('hex');
 
     // Check if a user with the same email already exists
     const existingUser = await User.findOne({ email });
@@ -27,11 +24,7 @@ exports.signup = async (req, res) => {
     // Save the user to the database
     await newUser.save();
 
-    // Create and sign a JWT token
-    const token = jwt.sign({ userId: newUser._id }, secretKey, {
-      expiresIn: '1h', // Token expiration time
-    });
-    res.status(201).json({ message: 'User registered successfully',token, secretKey });
+    res.status(201).json({ message: 'User registered successfully'});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred' });
