@@ -1,35 +1,38 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import WorkInprogressPage from './WorkInprogressPage'
-import Template from './template'
+import WorkInprogressPage from '../pages/WorkInprogressPage'
+import { Link, useNavigate } from "react-router-dom";
 // import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Finance', href: '#', current: false },
-  { name: 'Inventory', href: '#', current: false },
-  { name: 'Contact Us', href: '#', current: false },
-  { name: 'About', href: '#', current: false },
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Dashboard() {
+export default function Navbar() {
+  const navigate = useNavigate();
   const [opens, setOpens] = useState(false);
   const [title, setTitle] = useState("Dashboard");
+
+
+  const user = {
+    name: 'Tom Cook',
+    email: 'tom@example.com',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  }
+  const navigation = [
+    { name: 'Dashboard', href: '/dashboard', current: false, action: () => setOpens(false) },
+    { name: 'Finance', href: '/finance', current: false, action: () => setOpens(false) },
+    { name: 'Inventory', href: '/inventory', current: false, action: () => setOpens(false) },
+    { name: 'Contact Us', href: '/contactus', current: false, action: () => setOpens(false) },
+    { name: 'About', href: '/about', current: false, action: () => setOpens(false) },
+  ]
+  const userNavigation = [
+    { name: 'Your Profile', href: 'user-profile', action: () => setOpens(false) },
+    { name: 'Settings', href: 'user-setting', action: () => setOpens(true) },
+    { name: 'Sign out', href: '#', action: () => setOpens(true) },
+  ]
   return (
     <>
       {/*
@@ -57,10 +60,10 @@ export default function Dashboard() {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
+                            to={item.href}
                             key={item.name}
-                            href={item.href}
-                            onClick={()=> setTitle(item.name)}
+                            onClick={item.action}
                             className={classNames(
                               item.current
                                 ? 'bg-gray-900 text-white'
@@ -70,7 +73,7 @@ export default function Dashboard() {
                             aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -108,16 +111,17 @@ export default function Dashboard() {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
+                                  <Link
+                                    to={item.href}
+                                    key={item.name}
+                                    onClick={item.action}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
-                                    onClick={setOpens(true)}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -194,17 +198,11 @@ export default function Dashboard() {
           )}
         </Disclosure>
 
-        <header className="bg-white shadow">
-          <Template title={title} />
-        </header>
-        <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
-        </main>
         <WorkInprogressPage
           open={opens}
           setOpen={setOpens}
           options={{
-            isActionButton : false
+            isActionButton: false
           }}
         />
       </div>
