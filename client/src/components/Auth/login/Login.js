@@ -41,11 +41,11 @@ const Login = () => {
       localStorage.setItem(formData.username, token);
       localStorage.setItem(`${formData.username}_secretKey`, secretKey);
       console.log("result , token ,secretKey , message ,valid ", result , token ,secretKey , message ,valid);
-      const userDataResult = await getUserData(token); // Call the function to fetch user-specific data
+      // const userDataResult = await getUserData(token); // Call the function to fetch user-specific data
       // Store userDataResult in your state or context
       navigate('/dashboard');
-      console.clear();
-      console.log("User Data:", userDataResult);
+      // console.clear();
+      // console.log("User Data:", userDataResult);
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i); // Get the key of the current item
         console.log(`Key: ${key}`);

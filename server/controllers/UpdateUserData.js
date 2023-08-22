@@ -22,7 +22,8 @@ exports.updateUserData = async (req, res, next) => {
       const userId = decodedToken.userId;
 
       const updatedProfileData = req.body; // Assuming the updated data is sent in the request body
-
+      console.clear();
+      console.log("updatedProfileData , userId=> ", updatedProfileData , userId);
       // Find the user by ID and update the userData field
       await User.findByIdAndUpdate(
         userId,

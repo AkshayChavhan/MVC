@@ -15,7 +15,7 @@ const UserProfile = () => {
             // Make a POST request to update user profile data
             const response = await updateUserData(token , userProfile);
 
-            console.log(response); // Log the response message
+            console.log("response =>",response); // Log the response message
         } catch (error) {
             console.error('Error updating profile:', error);
         }

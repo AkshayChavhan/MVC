@@ -6,7 +6,7 @@ const UserControllerUserData = require('../controllers/UserData');
 const UserControllerUpdateUserData = require('../controllers/UpdateUserData');
 
 router.post('/signup', UserControllerSignUp.signup);
-router.post('/validate-token', UserControllerLogin.login);
+router.post('/login', UserControllerLogin.login);
 router.get('/userdata', UserControllerUserData.getUserData);
 router.post('/update-profile', UserControllerUpdateUserData.updateUserData);
 

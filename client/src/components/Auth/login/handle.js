@@ -11,7 +11,7 @@ export const signupUser = async (userData) => {
 
 export const loginUser = async (userData) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/users/validate-token', userData);
+    const response = await axios.post('http://localhost:5000/api/users/login', userData);
     return response;
   } catch (error) {
     return error.message;
